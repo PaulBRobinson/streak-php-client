@@ -1,0 +1,4 @@
+suites:
+    streak:
+        namespace: Streak
+        psr4_prefix: Streak
