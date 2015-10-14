@@ -13,6 +13,8 @@ $ composer require xotelia/streak-php-client
 ```php
 <?php
 
+require __DIR__.'/vendor/autoload.php';
+
 use Streak\Streak;
 
 $apiKey = 'your api key';
