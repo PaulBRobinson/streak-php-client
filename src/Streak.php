@@ -53,4 +53,9 @@ class Streak
     {
         return new Field($this->client, $pipelineKey);
     }
+
+    public function tasks()
+    {
+        return new Task($this->client);
+    }
 }

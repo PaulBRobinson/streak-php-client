@@ -41,4 +41,9 @@ class StreakSpec extends ObjectBehavior
     {
         $this->fields(Argument::type('string'))->shouldHaveType('Streak\Endpoint\Field');
     }
+
+    function it_gets_tasks()
+    {
+        $this->tasks()->shouldHaveType('Streak\Endpoint\Task');
+    }
 }
