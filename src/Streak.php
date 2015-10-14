@@ -8,22 +8,21 @@ use Streak\Endpoint\Pipeline;
 use Streak\Endpoint\Box;
 use Streak\Endpoint\Stage;
 use Streak\Endpoint\Field;
+use Streak\Endpoint\Task;
 
 class Streak
 {
-    const BASE_URL = 'https://www.streak.com/api/v1/';
+    const BASE_URL = 'https://www.streak.com/api/{version}/';
+    const VERSION = 'v1';
 
     protected $client;
 
     public function __construct($apiKey)
     {
         $handler = new GuzzleClient([
-            'base_url' => self::BASE_URL,
+            'base_url' => [self::BASE_URL, ['version' => self::VERSION]],
             'defaults' => [
                 'auth' => [$apiKey],
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                ],
             ],
         ]);
 
