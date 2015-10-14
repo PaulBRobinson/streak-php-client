@@ -48,7 +48,8 @@ class StageSpec extends ObjectBehavior
     function it_should_delete_a_stage(Client $client)
     {
         $client->delete(Argument::type('string'))->shouldBeCalled();
-        $this->delete(Argument::type('string'));
+        $client->delete(Argument::type('string'))->willReturn(true);
+        $this->delete(Argument::type('string'))->shouldReturn(true);
     }
 
     function it_should_edit_a_stage(Client $client)
