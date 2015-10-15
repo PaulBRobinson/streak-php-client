@@ -15,6 +15,7 @@ use Streak\Endpoint\Comment;
 use Streak\Endpoint\Snippet;
 use Streak\Endpoint\Search;
 use Streak\Endpoint\Newsfeed;
+use GuzzleHttp\ClientInterface;
 
 class Streak
 {
@@ -23,14 +24,22 @@ class Streak
 
     protected $client;
 
-    public function __construct($apiKey)
+    public function __construct($apiKey, array $config = [])
     {
-        $handler = new GuzzleClient([
-            'base_url' => [self::BASE_URL, ['version' => self::VERSION]],
-            'defaults' => [
-                'auth' => [$apiKey],
-            ],
-        ]);
+        if (isset($config['handler'])) {
+            if ($config['handler'] instanceof ClientInterface) {
+                $handler = $config['handler'];
+            } else {
+                throw new \InvalidArgumentException('The handler should be an instance of "GuzzleHttp\ClientInterface".');
+            }
+        } else {
+            $handler = new GuzzleClient([
+                'base_url' => [self::BASE_URL, ['version' => self::VERSION]],
+                'defaults' => [
+                    'auth' => [$apiKey],
+                ],
+            ]);
+        }
 
         $this->client = new Client($handler);
     }

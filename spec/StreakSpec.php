@@ -4,6 +4,7 @@ namespace spec\Streak;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use GuzzleHttp\ClientInterface;
 
 class StreakSpec extends ObjectBehavior
 {
@@ -15,6 +16,24 @@ class StreakSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType('Streak\Streak');
+    }
+
+    function it_is_initializable_with_an_handler($apiKey, ClientInterface $handler)
+    {
+        $this->beConstructedWith($apiKey, [
+            'handler' => $handler,
+        ]);
+
+        $this->shouldHaveType('Streak\Streak');
+    }
+
+    function it_should_only_allow_specific_handler($apiKey)
+    {
+        $this->beConstructedWith($apiKey, [
+            'handler' => 'foo',
+        ]);
+
+        $this->shouldThrow('\InvalidArgumentException')->duringInstantiation();
     }
 
     function it_gets_users()
