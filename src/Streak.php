@@ -24,6 +24,13 @@ class Streak
 
     protected $client;
 
+    /**
+     * Construct the Streak client
+     * The config only allows a 'handler' parameter to pass a custom handler
+     *
+     * @param string $apiKey required api key
+     * @param array  $config config
+     */
     public function __construct($apiKey, array $config = [])
     {
         if (isset($config['handler'])) {

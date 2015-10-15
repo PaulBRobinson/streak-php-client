@@ -13,16 +13,31 @@ class Client
         $this->handler = $handler;
     }
 
+    /**
+     * Shortcut to make a GET request
+     *
+     * @return array|string
+     */
     public function get($path, array $options = [], $withJson = true)
     {
         return $this->sendRequest('GET', $path, $options, $withJson);
     }
 
+    /**
+     * Shortcut to make a PUT request
+     *
+     * @return array
+     */
     public function put($path, array $options = [])
     {
         return $this->sendRequest('PUT', $path, $options);
     }
 
+    /**
+     * Shortcut to make a DELETE request
+     *
+     * @return boolean
+     */
     public function delete($path, array $options = [])
     {
         $response = $this->sendRequest('DELETE', $path, $options);
@@ -30,11 +45,21 @@ class Client
         return $response['success'];
     }
 
+    /**
+     * Shortcut to make a POST request
+     *
+     * @return array
+     */
     public function post($path, array $options = [])
     {
         return $this->sendRequest('POST', $path, $options);
     }
 
+    /**
+     * Make the HTTP request through the handler
+     *
+     * @return array|string
+     */
     public function sendRequest($method, $path, array $options = [], $withJson = true)
     {
         $response = $this->handler->send($this->handler->createRequest($method, $path, $options));
