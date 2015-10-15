@@ -13,9 +13,9 @@ class Client
         $this->handler = $handler;
     }
 
-    public function get($path, array $options = [])
+    public function get($path, array $options = [], $withJson = true)
     {
-        return $this->sendRequest('GET', $path, $options);
+        return $this->sendRequest('GET', $path, $options, $withJson);
     }
 
     public function put($path, array $options = [])
@@ -35,10 +35,10 @@ class Client
         return $this->sendRequest('POST', $path, $options);
     }
 
-    public function sendRequest($method, $path, array $options = [])
+    public function sendRequest($method, $path, array $options = [], $withJson = true)
     {
         $response = $this->handler->send($this->handler->createRequest($method, $path, $options));
 
-        return $response->json();
+        return $withJson ? $response->json() : (string) $response->getBody();
     }
 }

@@ -53,4 +53,13 @@ class ClientSpec extends ObjectBehavior
         $handler->send($request)->willReturn($response);
         $this->post('foo', $options);
     }
+
+    function it_should_get_a_raw_response(ClientInterface $handler, RequestInterface $request, ResponseInterface $response)
+    {
+        $handler->createRequest('GET', 'foo', [])->willReturn($request);
+        $handler->send($request)->shouldBeCalled();
+        $handler->send($request)->willReturn($response);
+        $response->getBody()->shouldBeCalled();
+        $this->get('foo', [], false);
+    }
 }

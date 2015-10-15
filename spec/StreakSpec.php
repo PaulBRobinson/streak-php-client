@@ -46,4 +46,34 @@ class StreakSpec extends ObjectBehavior
     {
         $this->tasks()->shouldHaveType('Streak\Endpoint\Task');
     }
+
+    function it_gets_files()
+    {
+        $this->files()->shouldHaveType('Streak\Endpoint\File');
+    }
+
+    function it_gets_threads()
+    {
+        $this->threads()->shouldHaveType('Streak\Endpoint\Thread');
+    }
+
+    function it_gets_comments()
+    {
+        $this->comments()->shouldHaveType('Streak\Endpoint\Comment');
+    }
+
+    function it_gets_snippets()
+    {
+        $this->snippets()->shouldHaveType('Streak\Endpoint\Snippet');
+    }
+
+    function it_gets_search()
+    {
+        $this->search()->shouldHaveType('Streak\Endpoint\Search');
+    }
+
+    function it_gets_newsfeed()
+    {
+        $this->newsfeed()->shouldHaveType('Streak\Endpoint\Newsfeed');
+    }
 }
