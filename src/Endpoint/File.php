@@ -6,7 +6,7 @@ class File extends AbstractEndpoint
 {
     const ENDPOINT = 'files';
 
-    function findAll($boxKey)
+    public function findAll($boxKey)
     {
         return $this->client->get(sprintf('boxes/%s/%s', $boxKey, self::ENDPOINT));
     }
