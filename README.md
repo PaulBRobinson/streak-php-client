@@ -1,6 +1,6 @@
 # Streak PHP Client
 
-[![Build Status](https://travis-ci.org/Xotelia/streak-php-client.svg)](https://travis-ci.org/Xotelia/streak-php-client) [![Latest Stable Version](https://poser.pugx.org/xotelia/streak-php-client/v/stable)](https://packagist.org/packages/xotelia/streak-php-client) [![Total Downloads](https://poser.pugx.org/xotelia/streak-php-client/downloads)](https://packagist.org/packages/xotelia/streak-php-client) [![License](https://poser.pugx.org/xotelia/streak-php-client/license)](https://packagist.org/packages/xotelia/streak-php-client)
+[![Build Status](https://travis-ci.org/Xotelia/streak-php-client.svg)](https://travis-ci.org/Xotelia/streak-php-client) [![Latest Stable Version](https://poser.pugx.org/xotelia/streak-php-client/v/stable)](https://packagist.org/packages/xotelia/streak-php-client) [![Total Downloads](https://poser.pugx.org/xotelia/streak-php-client/downloads)](https://packagist.org/packages/xotelia/streak-php-client) [![License](https://poser.pugx.org/xotelia/streak-php-client/license)](https://packagist.org/packages/xotelia/streak-php-client) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Xotelia/streak-php-client/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Xotelia/streak-php-client/?branch=master)
 
 Simple PHP client for [Streak API](https://www.streak.com/api/)
 
