@@ -54,4 +54,9 @@ class Box extends AbstractEndpoint
             'json' => $box,
         ]);
     }
+
+    public function find($boxKey)
+    {
+        return $this->client->get(sprintf('%s/%s', self::ENDPOINT, $boxKey));
+    }
 }

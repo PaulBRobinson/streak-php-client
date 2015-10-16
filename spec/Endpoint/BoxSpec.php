@@ -76,4 +76,10 @@ class BoxSpec extends ObjectBehavior
         $client->post(Argument::type('string'), Argument::type('array'))->shouldBeCalled();
         $this->edit(Argument::type('string'), ['name' => Argument::type('string')]);
     }
+
+    function it_should_find_a_box(Client $client)
+    {
+        $client->get(Argument::type('string'))->shouldBeCalled();
+        $this->find(Argument::type('string'));
+    }
 }
