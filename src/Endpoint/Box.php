@@ -45,7 +45,7 @@ class Box extends AbstractEndpoint
     public function edit($boxKey, array $box)
     {
         foreach ($box as $field => $value) {
-            if (!in_array($field, ['name', 'notes', 'stageKey', 'followerKeys'])) {
+            if (!in_array($field, ['name', 'notes', 'stageKey', 'followerKeys', 'fields'])) {
                 throw new \InvalidArgumentException('Not allowed field.');
             }
         }
