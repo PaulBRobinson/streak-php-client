@@ -43,7 +43,7 @@ class Streak
             $handler = new GuzzleClient([
                 'base_url' => [self::BASE_URL, ['version' => self::VERSION]],
                 'defaults' => [
-                    'auth' => [$apiKey],
+                    'auth' => [$apiKey, ''],
                 ],
             ]);
         }
