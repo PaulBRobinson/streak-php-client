@@ -62,8 +62,10 @@ class Client
      */
     public function sendRequest($method, $path, array $options = [], $withJson = true)
     {
-        $response = $this->handler->send($this->handler->createRequest($method, $path, $options));
+        $response = $this->handler->request($method, $path, $options);
 
-        return $withJson ? $response->json() : (string) $response->getBody();
+        $body = (string)$response->getBody();
+
+        return $withJson ? json_decode($body) : $body;
     }
 }
