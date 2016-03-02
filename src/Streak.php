@@ -19,8 +19,7 @@ use GuzzleHttp\ClientInterface;
 
 class Streak
 {
-    const BASE_URL = 'https://www.streak.com/api/{version}/';
-    const VERSION = 'v1';
+    const BASE_URL = 'https://www.streak.com/api/v1/';
 
     protected $client;
 
@@ -41,10 +40,8 @@ class Streak
             }
         } else {
             $handler = new GuzzleClient([
-                'base_url' => [self::BASE_URL, ['version' => self::VERSION]],
-                'defaults' => [
-                    'auth' => [$apiKey, ''],
-                ],
+                'base_uri' => self::BASE_URL,
+                'auth'     => [$apiKey, ''],
             ]);
         }
 
