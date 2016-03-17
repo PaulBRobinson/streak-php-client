@@ -66,6 +66,6 @@ class Client
 
         $body = (string)$response->getBody();
 
-        return $withJson ? json_decode($body) : $body;
+        return $withJson ? json_decode($body, true) : $body;
     }
 }
