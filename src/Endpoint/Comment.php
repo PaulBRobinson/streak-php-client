@@ -9,7 +9,7 @@ class Comment extends AbstractEndpoint
     public function create($boxKey, $message)
     {
         return $this->client->put(sprintf('boxes/%s/%s', $boxKey, self::ENDPOINT), [
-            'body' => [
+            'form_params' => [
                 'message' => $message,
             ],
         ]);

@@ -19,7 +19,7 @@ class Task extends AbstractEndpoint
     public function create($boxKey, $text, $dueDate)
     {
         return $this->client->post(sprintf('/api/v2/boxes/%s/%s', $boxKey, self::ENDPOINT), [
-            'body' => [
+            'form_params' => [
                 'text' => $text,
                 'dueDate' => $dueDate,
             ],

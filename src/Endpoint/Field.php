@@ -27,7 +27,7 @@ class Field extends PipelineEndpoint
         }
 
         return $this->client->put(sprintf('pipelines/%s/%s', $this->pipelineKey, self::ENDPOINT), [
-            'body' => [
+            'form_params' => [
                 'name' => $name,
                 'type' => $type,
             ],

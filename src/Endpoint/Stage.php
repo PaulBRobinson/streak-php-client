@@ -19,7 +19,7 @@ class Stage extends PipelineEndpoint
     public function create($name)
     {
         return $this->client->put(sprintf('pipelines/%s/%s', $this->pipelineKey, self::ENDPOINT), [
-            'body' => [
+            'form_params' => [
                 'name' => $name,
             ],
         ]);

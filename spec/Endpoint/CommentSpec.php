@@ -23,7 +23,7 @@ class CommentSpec extends ObjectBehavior
         $message = 'foo';
 
         $client->put(Argument::type('string'), [
-            'body' => [
+            'form_params' => [
                 'message' => $message,
             ],
         ])->shouldBeCalled();

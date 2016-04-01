@@ -66,7 +66,7 @@ class PipelineSpec extends ObjectBehavior
         ];
 
         $client->put(Argument::type('string'), [
-            'body' => $pipeline,
+            'form_params' => $pipeline,
         ])->shouldBeCalled();
 
         $this->create($pipeline);
