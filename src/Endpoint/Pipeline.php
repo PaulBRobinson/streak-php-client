@@ -33,7 +33,7 @@ class Pipeline extends AbstractEndpoint
         }
 
         return $this->client->put(self::ENDPOINT, [
-            'body' => $pipeline,
+            'form_params' => $pipeline,
         ]);
     }
 

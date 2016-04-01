@@ -33,7 +33,7 @@ class Box extends AbstractEndpoint
         }
 
         return $this->client->put(sprintf('pipelines/%s/%s', $pipelineKey, self::ENDPOINT), [
-            'body' => $box,
+            'form_params' => $box,
         ]);
     }
 
