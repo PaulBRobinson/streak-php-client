@@ -44,7 +44,7 @@ class FieldSpec extends ObjectBehavior
         $type = Field::TYPE_TEXT;
 
         $client->put(Argument::type('string'), [
-            'body' => [
+            'form_params' => [
                 'name' => $name,
                 'type' => $type,
             ],

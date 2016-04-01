@@ -41,7 +41,7 @@ class TaskSpec extends ObjectBehavior
         $dueDate = time();
 
         $client->post(Argument::type('string'), [
-            'body' => [
+            'form_params' => [
                 'text' => $text,
                 'dueDate' => $dueDate,
             ],

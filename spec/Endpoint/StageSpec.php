@@ -37,7 +37,7 @@ class StageSpec extends ObjectBehavior
         $name = 'foo';
 
         $client->put(Argument::type('string'), [
-            'body' => [
+            'form_params' => [
                 'name' => $name,
             ],
         ])->shouldBeCalled();
