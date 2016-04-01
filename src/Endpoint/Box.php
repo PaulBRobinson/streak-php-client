@@ -2,6 +2,8 @@
 
 namespace Streak\Endpoint;
 
+use Streak\Paginator;
+
 class Box extends AbstractEndpoint
 {
     const ENDPOINT = 'boxes';
@@ -11,19 +13,32 @@ class Box extends AbstractEndpoint
         return $this->client->get(self::ENDPOINT);
     }
 
-    public function findAll($pipelineKey, $sortBy = null)
+    public function findAll($pipelineKey, $sortBy = null, Paginator $paginator = null)
     {
-        $options = [];
+        $options = ['query' => []];
 
         if (null !== $sortBy) {
             if (!in_array($sortBy, ['creationTimestamp', 'lastUpdatedTimestamp'])) {
                 throw new \InvalidArgumentException('Invalid sort field.');
             }
 
-            $options['query'] = ['sortBy' => $sortBy];
+            $options['query']['sortBy'] = $sortBy;
         }
 
-        return $this->client->get(sprintf('pipelines/%s/%s', $pipelineKey, self::ENDPOINT), $options);
+        if (null === $paginator) {
+            $paginator = new Paginator();
+        }
+
+        while ($paginator->nextPage()) {
+            $options['query']['page'] = $paginator->getPage();
+            $options['query']['limit'] = $paginator->getLimit();
+
+            $results = $this->client->get(sprintf('pipelines/%s/%s', $pipelineKey, self::ENDPOINT), $options);
+
+            $paginator->addResults($results);
+        }
+
+        return $paginator->getResults();
     }
 
     public function create($pipelineKey, array $box)
