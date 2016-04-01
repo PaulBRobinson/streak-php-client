@@ -41,7 +41,12 @@ class BoxSpec extends ObjectBehavior
 
     function it_should_find_all_boxes(Client $client)
     {
-        $client->get(Argument::type('string'), [])->shouldBeCalled();
+        $client->get(Argument::type('string'), [
+            'query' => [
+                'page'  => 1,
+                'limit' => 500,
+            ],
+        ])->shouldBeCalled();
         $this->findAll(Argument::type('string'));
     }
 
@@ -52,6 +57,8 @@ class BoxSpec extends ObjectBehavior
         $client->get(Argument::type('string'), [
             'query' => [
                 'sortBy' => $sortBy,
+                'page'   => 1,
+                'limit'  => 500,
             ],
         ])->shouldBeCalled();
 
