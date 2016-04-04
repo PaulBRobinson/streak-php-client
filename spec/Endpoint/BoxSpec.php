@@ -46,7 +46,8 @@ class BoxSpec extends ObjectBehavior
                 'page'  => 1,
                 'limit' => 500,
             ],
-        ])->shouldBeCalled();
+        ])->willReturn([])->shouldBeCalled();
+
         $this->findAll(Argument::type('string'));
     }
 
@@ -60,7 +61,7 @@ class BoxSpec extends ObjectBehavior
                 'page'   => 1,
                 'limit'  => 500,
             ],
-        ])->shouldBeCalled();
+        ])->willReturn([])->shouldBeCalled();
 
         $this->findAll(Argument::type('string'), $sortBy);
     }
