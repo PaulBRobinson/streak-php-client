@@ -15,11 +15,12 @@ use Streak\Endpoint\Comment;
 use Streak\Endpoint\Snippet;
 use Streak\Endpoint\Search;
 use Streak\Endpoint\Newsfeed;
+use Streak\Endpoint\Contact;
 use GuzzleHttp\ClientInterface;
 
 class Streak
 {
-    const BASE_URL = 'https://www.streak.com/api/v1/';
+    const BASE_URL = 'https://www.streak.com/api/';
 
     protected $client;
 
@@ -71,6 +72,11 @@ class Streak
     public function fields($pipelineKey)
     {
         return new Field($this->client, $pipelineKey);
+    }
+
+    public function contacts($teamKey)
+    {
+        return new Contact($this->client, $teamKey);
     }
 
     public function tasks()

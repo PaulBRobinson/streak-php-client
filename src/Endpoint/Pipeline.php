@@ -18,12 +18,12 @@ class Pipeline extends AbstractEndpoint
             $options['query'] = ['sortBy' => $sortBy];
         }
 
-        return $this->client->get(self::ENDPOINT, $options);
+        return $this->client->get('v1/'.self::ENDPOINT, $options);
     }
 
     public function find($pipelineKey)
     {
-        return $this->client->get(sprintf('%s/%s', self::ENDPOINT, $pipelineKey));
+        return $this->client->get(sprintf('%s/%s/%s', 'v1', self::ENDPOINT, $pipelineKey));
     }
 
     public function create(array $pipeline)
@@ -32,14 +32,14 @@ class Pipeline extends AbstractEndpoint
             throw new \InvalidArgumentException('Missing required fields.');
         }
 
-        return $this->client->put(self::ENDPOINT, [
+        return $this->client->put('v1/'.self::ENDPOINT, [
             'form_params' => $pipeline,
         ]);
     }
 
     public function delete($pipelineKey)
     {
-        return $this->client->delete(sprintf('%s/%s', self::ENDPOINT, $pipelineKey));
+        return $this->client->delete(sprintf('%s/%s/%s', 'v1', self::ENDPOINT, $pipelineKey));
     }
 
     public function edit($pipelineKey, array $pipeline)
@@ -50,7 +50,7 @@ class Pipeline extends AbstractEndpoint
             }
         }
 
-        return $this->client->post(sprintf('%s/%s', self::ENDPOINT, $pipelineKey), [
+        return $this->client->post(sprintf('%s/%s/%s', 'v1', self::ENDPOINT, $pipelineKey), [
             'json' => $pipeline,
         ]);
     }

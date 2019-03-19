@@ -10,7 +10,7 @@ class Box extends AbstractEndpoint
 
     public function all()
     {
-        return $this->client->get(self::ENDPOINT);
+        return $this->client->get('v1/'.self::ENDPOINT);
     }
 
     public function findAll($pipelineKey, $sortBy = null, Paginator $paginator = null)
@@ -33,7 +33,7 @@ class Box extends AbstractEndpoint
             $options['query']['page'] = $paginator->getPage();
             $options['query']['limit'] = $paginator->getLimit();
 
-            $results = $this->client->get(sprintf('pipelines/%s/%s', $pipelineKey, self::ENDPOINT), $options);
+            $results = $this->client->get(sprintf('%s/pipelines/%s/%s', 'v1', $pipelineKey, self::ENDPOINT), $options);
 
             $paginator->addResults($results);
         }
@@ -47,31 +47,31 @@ class Box extends AbstractEndpoint
             throw new \InvalidArgumentException('Missing required fields.');
         }
 
-        return $this->client->put(sprintf('pipelines/%s/%s', $pipelineKey, self::ENDPOINT), [
+        return $this->client->put(sprintf('%s/pipelines/%s/%s', 'v1', $pipelineKey, self::ENDPOINT), [
             'form_params' => $box,
         ]);
     }
 
     public function delete($boxKey)
     {
-        return $this->client->delete(sprintf('%s/%s', self::ENDPOINT, $boxKey));
+        return $this->client->delete(sprintf('%s/%s/%s', 'v1', self::ENDPOINT, $boxKey));
     }
 
     public function edit($boxKey, array $box)
     {
         foreach ($box as $field => $value) {
-            if (!in_array($field, ['name', 'notes', 'stageKey', 'followerKeys', 'fields'])) {
+            if (!in_array($field, ['name', 'notes', 'stageKey', 'followerKeys', 'fields', 'contacts'])) {
                 throw new \InvalidArgumentException('Not allowed field.');
             }
         }
 
-        return $this->client->post(sprintf('%s/%s', self::ENDPOINT, $boxKey), [
+        return $this->client->post(sprintf('%s/%s/%s', 'v1', self::ENDPOINT, $boxKey), [
             'json' => $box,
         ]);
     }
 
     public function find($boxKey)
     {
-        return $this->client->get(sprintf('%s/%s', self::ENDPOINT, $boxKey));
+        return $this->client->get(sprintf('%s/%s/%s', 'v1', self::ENDPOINT, $boxKey));
     }
 }

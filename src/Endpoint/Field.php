@@ -12,12 +12,12 @@ class Field extends PipelineEndpoint
 
     public function findAll()
     {
-        return $this->client->get(sprintf('pipelines/%s/%s', $this->pipelineKey, self::ENDPOINT));
+        return $this->client->get(sprintf('%s/pipelines/%s/%s', 'v1', $this->pipelineKey, self::ENDPOINT));
     }
 
     public function find($fieldKey)
     {
-        return $this->client->get(sprintf('pipelines/%s/%s/%s', $this->pipelineKey, self::ENDPOINT, $fieldKey));
+        return $this->client->get(sprintf('%s/pipelines/%s/%s/%s', 'v1', $this->pipelineKey, self::ENDPOINT, $fieldKey));
     }
 
     public function create($name, $type)
@@ -26,7 +26,7 @@ class Field extends PipelineEndpoint
             throw new \InvalidArgumentException('Invalid Field type.');
         }
 
-        return $this->client->put(sprintf('pipelines/%s/%s', $this->pipelineKey, self::ENDPOINT), [
+        return $this->client->put(sprintf('%s/pipelines/%s/%s', 'v1', $this->pipelineKey, self::ENDPOINT), [
             'form_params' => [
                 'name' => $name,
                 'type' => $type,
@@ -36,12 +36,12 @@ class Field extends PipelineEndpoint
 
     public function delete($fieldKey)
     {
-        return $this->client->delete(sprintf('pipelines/%s/%s/%s', $this->pipelineKey, self::ENDPOINT, $fieldKey));
+        return $this->client->delete(sprintf('%s/pipelines/%s/%s/%s', 'v1', $this->pipelineKey, self::ENDPOINT, $fieldKey));
     }
 
     public function edit($fieldKey, $name)
     {
-        return $this->client->post(sprintf('pipelines/%s/%s/%s', $this->pipelineKey, self::ENDPOINT, $fieldKey), [
+        return $this->client->post(sprintf('%s/pipelines/%s/%s/%s', 'v1', $this->pipelineKey, self::ENDPOINT, $fieldKey), [
             'json' => [
                 'name' => $name,
             ],
@@ -50,17 +50,17 @@ class Field extends PipelineEndpoint
 
     public function values($boxKey)
     {
-        return $this->client->get(sprintf('boxes/%s/%s', $boxKey, self::ENDPOINT));
+        return $this->client->get(sprintf('%s/boxes/%s/%s', 'v1', $boxKey, self::ENDPOINT));
     }
 
     public function getValue($boxKey, $fieldKey)
     {
-        return $this->client->get(sprintf('boxes/%s/%s/%s', $boxKey, self::ENDPOINT, $fieldKey));
+        return $this->client->get(sprintf('%s/boxes/%s/%s/%s', 'v1', $boxKey, self::ENDPOINT, $fieldKey));
     }
 
     public function setValue($boxKey, $fieldKey, $value)
     {
-        return $this->client->post(sprintf('boxes/%s/%s/%s', $boxKey, self::ENDPOINT, $fieldKey), [
+        return $this->client->post(sprintf('%s/boxes/%s/%s/%s', 'v1', $boxKey, self::ENDPOINT, $fieldKey), [
             'json' => [
                 'value' => $value,
             ],

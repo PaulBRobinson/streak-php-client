@@ -8,11 +8,16 @@ class User extends AbstractEndpoint
 
     public function me()
     {
-        return $this->client->get(self::ENDPOINT.'/me');
+        return $this->client->get('v1/'.self::ENDPOINT.'/me');
     }
 
     public function find($userKey)
     {
-        return $this->client->get(sprintf('%s/%s', self::ENDPOINT, $userKey));
+        return $this->client->get(sprintf('%s/%s/%s', 'v1', self::ENDPOINT, $userKey));
+    }
+
+    public function teams()
+    {
+      return $this->client->get('v2/'.self::ENDPOINT.'/me/teams');
     }
 }
