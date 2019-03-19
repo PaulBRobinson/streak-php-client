@@ -4,6 +4,8 @@
 
 Simple PHP client for [Streak API](https://www.streak.com/api/)
 
+Special forked version to add Team endpoint and adjust code to swap between V1 and V2 of Streak API depending on the Endpoint.
+
 ## Installation
 
 ```
